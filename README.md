@@ -81,9 +81,13 @@ All dimensions are parameters at the top of the `.scad` file (tablet size, clear
 etc.). To regenerate after editing:
 
 ```bash
-openscad -o stl/fire_hd10_mount.stl  src/fire_hd10_mount.scad
-openscad -o 3mf/fire_hd10_mount.3mf  src/fire_hd10_mount.scad
+openscad -o stl/fire_hd10_mount.stl src/fire_hd10_mount.scad
+python3 tools/stl_to_3mf.py stl/fire_hd10_mount.stl 3mf/fire_hd10_mount.3mf
 ```
+
+> **Note:** the 3MF is produced from the STL with `tools/stl_to_3mf.py`, **not** `openscad -o …3mf`.
+> OpenSCAD's native 3MF export embeds extra metadata that Bambu Studio rejects with
+> *"invalid config, loading geometry only."* The script writes a clean core-spec 3MF that imports fine.
 
 **Fit too tight or too loose?** Adjust `cl_t` (thickness clearance) and `cl_w` (width clearance).
 **Different generation or a case?** Change `tw` / `th` / `tt` to the outer dimensions you measure.
