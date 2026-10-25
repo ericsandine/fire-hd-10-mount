@@ -55,13 +55,12 @@ clip_cx   = 55;                      // top-clip centre offset from X=0
 finger_w  = 46;                      // finger notch in the bottom lip
 br        = 16;                      // corner-bracket leg length (sideways stop)
 
-/* [Cable channel] */
+/* [Cable channel — routed on the BACK of the base, hidden against the wall] */
 cw       = 6.5;                      // channel width (fits a USB-C cable)
-cd       = 5.0;                      // channel depth into the base
-floor_z  = front_z - cd;             // channel floor (stays well above the 3mm back)
-ych      = 7.0;                      // channel centreline height
-cx_end   = 116;                      // channel reaches +/-116 in X
-brg_z0   = front_z - 1.3;            // retention-bridge underside
+bd       = 6.0;                      // channel depth into the back of the base
+ych      = 7.5;                      // channel centreline height
+cx_left  = -116;                     // left (exit) end
+tab_z    = 1.5;                      // retention-tab height (on the back/bed side)
 
 /* [Command-strip recesses — on the back] */
 rec_w  = 18;                         // recess width
@@ -123,27 +122,31 @@ module plate() {
 }
 
 module base() {                      // bottom shelf block; top face = shelf floor
-    difference() {
-        translate([0, base_h/2, 0]) linear_extrude(front_z) rrect(tw, base_h, rc);
-        cable_cut();
+    union() {
+        difference() {
+            translate([0, base_h/2, 0]) linear_extrude(front_z) rrect(tw, base_h, rc);
+            cable_cut();
+        }
+        cable_tabs();                // retainers on the back opening
     }
 }
 
-module cable_cut() {                 // groove: right riser -> across -> left exit
-    h = (front_z - floor_z) + eps;
-    zc = (floor_z + front_z)/2 + eps/2;
-    // horizontal run under the tablet
-    translate([0, ych, zc])              cube([2*cx_end, cw, h], center = true);
-    // right entry — opens up through the shelf floor near the USB edge
-    translate([cx_end, (ych + base_h)/2, zc])  cube([cw, base_h - ych, h], center = true);
-    // left exit — drops down and out the bottom edge
-    translate([-cx_end, (ych - 1)/2, zc])      cube([cw, ych + 2, h], center = true);
+// Groove cut into the BACK (Z=0 side) of the base: in from the open right edge,
+// across under the tablet, then down and out the bottom-left — all hidden
+// behind the mount, against the wall.
+module cable_cut() {
+    h  = bd + eps;
+    zc = bd/2 - eps/2;               // spans Z = [-eps, bd]
+    rx = t_half + eps;               // reach the right edge (open entry)
+    // horizontal run, open at the right edge
+    translate([(cx_left + rx)/2, ych, zc]) cube([rx - cx_left, cw, h], center = true);
+    // left exit — down and out the bottom edge
+    translate([cx_left, (ych - 1)/2, zc])  cube([cw, ych + 2, h], center = true);
 }
 
-module cable_bridges() {             // thin retainers the cable tucks under
-    for (x = [-72, 0, 72])
-        translate([x, ych, (brg_z0 + front_z)/2])
-            cube([4.5, cw + 4, front_z - brg_z0], center = true);
+module cable_tabs() {                // keep the cable in before it's wall-mounted
+    for (x = [-70, 0, 70])
+        translate([x, ych, tab_z/2]) cube([4.5, cw + 4, tab_z], center = true);
 }
 
 module top_clip(cx) {
@@ -175,7 +178,6 @@ module mount() {
     union() {
         plate();
         base();
-        cable_bridges();
         top_clip( clip_cx);
         top_clip(-clip_cx);
         bottom_lip();
