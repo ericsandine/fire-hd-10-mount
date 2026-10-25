@@ -126,28 +126,36 @@ module cable_cut() {
         cube([cw, ych + 2*eps, bd + eps], center = true);
 }
 
-module base() {                      // bottom shelf block; top face = shelf floor
-    difference() {
-        translate([0, base_h/2, 0]) slab(plate_w, base_h, front_z, rc);
-        cable_cut();
-    }
+// Bottom shelf block; its top face (Y = rest_y) is the shelf the tablet sits on.
+// It runs the full part depth so its front face is flush with the bottom lip,
+// which grows straight up out of it (one solid bar, nothing floating).
+// NOTE: the cable channel is cut in mount(), from the whole union — the back
+// plate also covers this region, so cutting only the base would seal the
+// channel's back with the plate.
+module base() {
+    translate([0, base_h/2, 0]) slab(plate_w, base_h, depth, rc);
 }
 
 module top_clip(cx) {
     lip_y0 = seated_top - tl_below;
     translate([cx, (lip_y0 + plate_h)/2, front_z])
         slab(clip_w, plate_h - lip_y0, lip_z, 2);
-    conn_y0 = seated_top + lift + head;          // connector above the tablet
+    // connector above the tablet; overlaps 1 mm into both the plate and the lip
+    // so the clip is solidly fused, not just touching face-to-face
+    conn_y0 = seated_top + lift + head;
     translate([cx, (conn_y0 + plate_h)/2, (back + front_z)/2])
-        cube([clip_w, plate_h - conn_y0, front_z - back], center = true);
+        cube([clip_w, plate_h - conn_y0, front_z - back + 2], center = true);
 }
 
+// Front lip over the tablet's bottom edge. It starts 2 mm down inside the base
+// so it's fused to it, and the finger notch only cuts the part above the shelf.
 module bottom_lip() {
+    y0 = rest_y - 2;
+    y1 = rest_y + bl_cover;
     difference() {
-        translate([0, rest_y + bl_cover/2, front_z])
-            slab(tw + cl_w, bl_cover, lip_z, 2);
-        translate([0, rest_y + bl_cover/2, front_z + lip_z/2])
-            cube([finger_w, bl_cover + 2, lip_z + 2], center = true);
+        translate([0, (y0 + y1)/2, front_z]) slab(tw + cl_w, y1 - y0, lip_z, 2);
+        translate([-finger_w/2, rest_y, front_z - eps])
+            cube([finger_w, bl_cover + 1, lip_z + 1]);
     }
 }
 
@@ -162,14 +170,17 @@ module side_rail(sx) {
 }
 
 module mount() {
-    union() {
-        plate();
-        base();
-        top_clip( clip_cx);
-        top_clip(-clip_cx);
-        bottom_lip();
-        side_rail( 1);
-        side_rail(-1);
+    difference() {
+        union() {
+            plate();
+            base();
+            top_clip( clip_cx);
+            top_clip(-clip_cx);
+            bottom_lip();
+            side_rail( 1);
+            side_rail(-1);
+        }
+        cable_cut();                 // through everything, so it's open to the wall
     }
 }
 

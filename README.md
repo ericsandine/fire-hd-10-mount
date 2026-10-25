@@ -60,14 +60,13 @@ hung. It only cuts into the thick bottom base (the Command strips mount higher o
 so the strip pads and the rest of the back stay flat. Fits a typical ~4–5 mm USB-C cable. Prefer the
 USB edge on the left? Mirror the part in your slicer — both short edges are open.
 
-![Back of the base — the open cable channel, in from the right edge and out the bottom-left](images/cable.png)
+![Wall-side view of the bottom-left: the open channel along the back of the base, and the exit notch out the bottom edge](images/cable.png)
 
-Cross-section through the channel (cable shown in red). The **wall side is open** — you lay the cable
-in from the back — while the **front (under the tablet) is a solid cover**. Printed back-down, that
-open wall side sits on the bed, so it prints open; the solid cover above it is a short **~9 mm bridge**
-that a P2S handles with no supports:
+Cross-section through the channel — a true slice of the STL (blue), with reference overlays: black =
+the wall, grey = the tablet, red = a cable. The channel is **open to the wall**, the **front is solid
+cover**, and the bottom lip grows straight out of the base in front of the tablet's bottom edge:
 
-![Channel cross-section — open on the wall side, solid cover on the front](images/section.png)
+![Channel cross-section — open to the wall, solid cover on the front, lip fused to the base](images/section.png)
 
 ### Inserting / removing
 
@@ -80,12 +79,12 @@ that a P2S handles with no supports:
 1. Clean the wall and the **flat back of the mount** with isopropyl alcohol; let dry.
 2. Use **4× Command 20 lb XL strips** — the back has **two recessed pads** (one down each side border)
    sized for them; seat the strips in those pockets so the mount hangs closer to the wall. This stays
-   well within the 20 lb / strip rating (mount ≈ 74 g + tablet ≈ 434 g ≈ 0.5 kg total).
+   well within the 20 lb / strip rating (mount ≈ 77 g + tablet ≈ 434 g ≈ 0.5 kg total).
 3. Snap the strip pairs together, press the mount to the wall, hold firmly, then follow the Command
    instructions (press 30 s, remove, wait 1 h before loading).
 4. Insert the tablet, then plug the cable into the open edge and route it through the channel.
 
-![Back — recessed strip pads](images/back.png)
+![Back (wall side) — recessed strip pads on the side borders, cable channel along the base](images/back.png)
 
 > The printed **first layer (the back face) is the flat side** — print it back-down (see below) and the
 > back comes out smooth and ideal for the adhesive strips.
@@ -98,12 +97,12 @@ Import `3mf/fire_hd10_mount.3mf` (or `stl/fire_hd10_mount.stl`) into Bambu Studi
 |--------------------|-----------------------------------------------------------------------|
 | **Orientation**    | **Back panel flat on the plate** (lips/clips pointing up).            |
 | **Material**       | PLA is fine indoors. **PETG** if the panel may sit in direct sun/heat.|
-| **Supports**       | **On** — the only features that *need* support are the undersides of the 3 front lips (shelf lip + 2 top clips). "Support on build plate only" is enough. The side rails are vertical walls; the cable-channel roof (~9 mm) and the shallow strip-recess floors are short bridges that print clean on their own. |
+| **Supports**       | **On, and turn OFF "On build plate only."** The 3 front lips (bottom lip + 2 top clips) overhang the tablet pocket, and the surface under them is the back plate, not the build plate, so their supports must stand *on the part*. With "build plate only" they get no support at all and print as drooping cantilevers. Tree (auto) is a good choice; the supports sit inside the tablet pocket and snap out. The cable-channel roof (~9 mm) and shallow strip-recess floors are short bridges; if the slicer also drops support into the back channel, it's optional (block it or pull it out). |
 | **Walls / infill** | 3 walls, 15–20 % infill. Plenty strong for ~0.5 kg in shear.         |
 | **Layer height**   | 0.2 mm.                                                               |
 
-Approx. part: **250.8 × 197.8 × 15 mm**, ~107 cm³ solid, **~74 g PLA** at ~15–20 % infill, a few hours.
-(Don't forget to enable supports — a missing front lip is what failed the first print.)
+Approx. part: **250.8 × 197.8 × 15 mm**, ~111 cm³ solid, **~77 g PLA** at ~15–20 % infill, a few hours.
+(Supports on with "On build plate only" off — unsupported front lips are what failed the first print.)
 
 ## Files
 
@@ -112,7 +111,8 @@ Approx. part: **250.8 × 197.8 × 15 mm**, ~107 cm³ solid, **~74 g PLA** at ~15
 | `src/fire_hd10_mount.scad`     | Parametric OpenSCAD source (all dimensions here).  |
 | `stl/fire_hd10_mount.stl`      | Ready-to-slice mesh.                               |
 | `3mf/fire_hd10_mount.3mf`      | Ready-to-slice mesh (3MF).                         |
-| `images/`                      | Renders.                                           |
+| `tools/`                       | STL→3MF converter and a mesh check (shell count).  |
+| `images/`                      | Renders (made by importing the STL).               |
 
 ## Customizing
 
@@ -121,8 +121,12 @@ etc.). To regenerate after editing:
 
 ```bash
 openscad -o stl/fire_hd10_mount.stl src/fire_hd10_mount.scad
+python3 tools/check_mesh.py stl/fire_hd10_mount.stl     # must report "shells: 1"
 python3 tools/stl_to_3mf.py stl/fire_hd10_mount.stl 3mf/fire_hd10_mount.3mf
 ```
+
+`check_mesh.py` catches parts that are manifold but split into separate bodies (a floating lip, say),
+which "manifold / NoError" alone does not.
 
 > **Note:** the 3MF is produced from the STL with `tools/stl_to_3mf.py`, **not** `openscad -o …3mf`
 > (OpenSCAD's native 3MF embeds base-materials + newer schema namespaces).
