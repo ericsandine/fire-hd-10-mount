@@ -1,0 +1,9 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Slicer / build artifacts
+*.gcode
+*.gcode.3mf
+*.3mf.bak
+/build/
