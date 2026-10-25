@@ -54,19 +54,19 @@ The groove is **open** — you just lay the cable in, no threading. It sits on t
 right**, plug in, and press the cable into the groove: it runs in from the right edge, across behind
 the tablet, and **exits at the bottom-left**, already against the wall, so it drops straight down.
 
-The opening is the full channel width on the back face; the roof is a **45° peak**, not a flat lid, so
-printed back-down it **corbels in and needs no supports or bridging** (and the little V gently cradles
-the cable). The **wall itself caps the opening** once the mount is hung, holding the cable in. It only
-cuts into the thick bottom base (the Command strips mount higher on the side borders), so the strip
-pads and the rest of the back stay flat. Fits a typical ~4–5 mm USB-C cable. Prefer the USB edge on
-the left? Mirror the part in your slicer — both short edges are open.
+It's a plain open channel (9 mm wide × 5 mm deep) — deliberately oversized so the cable is a loose,
+forgiving fit. The opening is the full width on the back face; the **wall caps it** once the mount is
+hung. It only cuts into the thick bottom base (the Command strips mount higher on the side borders),
+so the strip pads and the rest of the back stay flat. Fits a typical ~4–5 mm USB-C cable. Prefer the
+USB edge on the left? Mirror the part in your slicer — both short edges are open.
 
-![Back of the base — the open lay-in cable groove, in from the right edge and out the bottom-left](images/cable.png)
+![Back of the base — the open cable channel, in from the right edge and out the bottom-left](images/cable.png)
 
-Cross-section through the channel (bottom = the back/wall side, which sits on the print bed) — open the
-full width, with the self-supporting peak above:
+Cross-section through the channel. Printed **back-down**, the opening sits on the bed (it becomes the
+wall side), so the channel's flat roof is a short **~9 mm bridge** — easy for a P2S, no supports
+needed, and any slight sag is hidden and harmless since the channel is oversized for the cable:
 
-![Channel cross-section — open on the back, 45° self-supporting roof](images/section.png)
+![Channel cross-section — a simple open channel on the back](images/section.png)
 
 ### Inserting / removing
 
@@ -97,7 +97,7 @@ Import `3mf/fire_hd10_mount.3mf` (or `stl/fire_hd10_mount.stl`) into Bambu Studi
 |--------------------|-----------------------------------------------------------------------|
 | **Orientation**    | **Back panel flat on the plate** (lips/clips pointing up).            |
 | **Material**       | PLA is fine indoors. **PETG** if the panel may sit in direct sun/heat.|
-| **Supports**       | **On** — the only overhangs are the undersides of the 3 front lips (shelf lip + 2 top clips). "Support on build plate only" is enough. The side rails are vertical walls, the **open cable groove needs no bridging**, and the shallow strip-recess floors self-bridge. |
+| **Supports**       | **On** — the only features that *need* support are the undersides of the 3 front lips (shelf lip + 2 top clips). "Support on build plate only" is enough. The side rails are vertical walls; the cable-channel roof (~9 mm) and the shallow strip-recess floors are short bridges that print clean on their own. |
 | **Walls / infill** | 3 walls, 15–20 % infill. Plenty strong for ~0.5 kg in shear.         |
 | **Layer height**   | 0.2 mm.                                                               |
 
