@@ -54,13 +54,19 @@ The groove is **open** — you just lay the cable in, no threading. It sits on t
 right**, plug in, and press the cable into the groove: it runs in from the right edge, across behind
 the tablet, and **exits at the bottom-left**, already against the wall, so it drops straight down.
 
-Because the groove is open along its whole length, there's nothing to bridge and no tabs to fight —
-the **wall itself caps it** once the mount is hung, holding the cable in. It only cuts into the thick
-bottom base (the Command strips mount higher on the side borders), so the strip pads and the rest of
-the back stay flat. Fits a typical ~4–5 mm USB-C cable. Prefer the USB edge on the left? Mirror the
-part in your slicer — both short edges are open.
+The opening is the full channel width on the back face; the roof is a **45° peak**, not a flat lid, so
+printed back-down it **corbels in and needs no supports or bridging** (and the little V gently cradles
+the cable). The **wall itself caps the opening** once the mount is hung, holding the cable in. It only
+cuts into the thick bottom base (the Command strips mount higher on the side borders), so the strip
+pads and the rest of the back stay flat. Fits a typical ~4–5 mm USB-C cable. Prefer the USB edge on
+the left? Mirror the part in your slicer — both short edges are open.
 
 ![Back of the base — the open lay-in cable groove, in from the right edge and out the bottom-left](images/cable.png)
+
+Cross-section through the channel (bottom = the back/wall side, which sits on the print bed) — open the
+full width, with the self-supporting peak above:
+
+![Channel cross-section — open on the back, 45° self-supporting roof](images/section.png)
 
 ### Inserting / removing
 
