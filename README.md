@@ -12,48 +12,55 @@ Home Assistant wall panel.
 - **Both short edges fully open** — the USB-C port, power button and volume rocker all live on a
   single short edge of this tablet, so leaving both short edges open keeps **USB, power and volume
   accessible** no matter which way you orient it.
-- **Hidden cable routing** — the charge cable enters through the open USB edge and runs in a channel
-  on the **back** of the base (against the wall), out the **bottom-left** and down the wall — nothing
-  crosses the front.
+- **Open lay-in cable groove** — the charge cable *drops into* an open groove on the **back** of the
+  base (no threading, no bridged tabs): in from the USB edge, across behind the tablet, out the
+  **bottom-left** and down the wall. The wall caps the groove when mounted; nothing crosses the front.
+- **Seats flush at the bottom** — the tablet's **rounded corners** drop into open relief (no square
+  brackets fighting the radius), so the bottom edge sits flat on the shelf. Two slim **side rails**
+  on the frame stop it sliding sideways by catching the straight side edges.
 - **Recessed Command-strip pads** — two shallow 1.5 mm pockets on the back let the strips sit inset,
   so the mount hangs a little closer to the wall.
 - **Tool-free "lift & drop" retention** — no flexing clips to fatigue or snap.
-- **Finished look** — beveled front edge, chamfered window, rounded clips and lip.
-- **Fits a 256 × 256 mm bed** — the part is 246.8 mm wide, comfortably inside a Bambu P1S/P2S/X1 plate.
+- **Squared, flush look** — straight (un-beveled) front edges, straight-walled groove, minimal
+  corner rounding.
+- **Fits a 256 × 256 mm bed** — the part is 250.8 mm wide, inside a Bambu P1S/P2S/X1 plate (≈5 mm
+  of margin to the edge).
 
 ## How it holds the tablet
 
 ```
-  FRONT view                          │ USB edge: power / volume / USB-C
-          ┌──[clip]──────────[clip]──┐│  cable plugs in, runs down this edge
-          │                          ││
-  open ►  │        (window)          │┘
-  edge    │                          │
-          │                          │   (cable channel is on the BACK, dashed)
-          └─────────[ notch ]────────┘
-           ◹  ╚═══════════════════◁══╝ ◸  ← channel across the back of the base
+  FRONT view                            │ USB edge: power / volume / USB-C
+          ┌───[clip]───────[clip]───┐   │  cable plugs in, runs down this edge
+        [rail]                          │
+  open ►  │         (window)        │ [rail]
+  edge    │                         │   │
+          │                         │   │   (cable groove is on the BACK)
+          └─────────[ notch ]───────┘   │
+           ╚══════════════════════◁═╝   ← open groove across the back of the base
               ▼ exits bottom-left, behind the mount, down the wall
 ```
 
 - **Bottom shelf + front lip** carries the tablet's weight; a center **finger notch** lets you push
-  the tablet up and out with a thumb.
+  the tablet up and out with a thumb. The bottom corners drop into open relief, so the tablet seats
+  flat instead of perching on square stops.
 - **Two top clips** hold the top edge flat against the panel.
-- **Two corner brackets** nest into the tablet's rounded bottom corners to stop it sliding sideways —
-  they add no width beyond the tablet.
+- **Two slim side rails** catch the tablet's straight side edges to stop sideways slide. They start
+  above the corner radius, so the rounded corners stay clear.
 
 ### Cable routing
 
-The channel runs along the **back of the base** (the wall side), so nothing is visible across the
-front. Mount the tablet with its **USB edge on the right**, plug in the cable, and let it run down the
-open right edge into the channel, which enters from that edge. It crosses the back behind the tablet
-and **exits at the bottom-left**, already against the wall, so it drops straight down. Press the cable
-past the three **retention tabs** so it stays put; once the mount is on the wall, the wall holds it in.
+The groove is **open** — you just lay the cable in, no threading. It sits on the **back of the base**
+(the wall side), so nothing is visible across the front. Mount the tablet with its **USB edge on the
+right**, plug in, and press the cable into the groove: it runs in from the right edge, across behind
+the tablet, and **exits at the bottom-left**, already against the wall, so it drops straight down.
 
-The channel only cuts into the thick bottom base (the Command strips mount on the side borders, not the
-base), so the strip surfaces and the rest of the back stay flat. It fits a typical ~4–5 mm USB-C cable.
-Prefer the USB edge on the left? Mirror the part in your slicer — both short edges are open.
+Because the groove is open along its whole length, there's nothing to bridge and no tabs to fight —
+the **wall itself caps it** once the mount is hung, holding the cable in. It only cuts into the thick
+bottom base (the Command strips mount higher on the side borders), so the strip pads and the rest of
+the back stay flat. Fits a typical ~4–5 mm USB-C cable. Prefer the USB edge on the left? Mirror the
+part in your slicer — both short edges are open.
 
-![Back of the mount — cable channel in the base, recessed strip pads on the sides](images/cable.png)
+![Back of the base — the open lay-in cable groove, in from the right edge and out the bottom-left](images/cable.png)
 
 ### Inserting / removing
 
@@ -84,11 +91,12 @@ Import `3mf/fire_hd10_mount.3mf` (or `stl/fire_hd10_mount.stl`) into Bambu Studi
 |--------------------|-----------------------------------------------------------------------|
 | **Orientation**    | **Back panel flat on the plate** (lips/clips pointing up).            |
 | **Material**       | PLA is fine indoors. **PETG** if the panel may sit in direct sun/heat.|
-| **Supports**       | **On** — the only overhangs needing support are the undersides of the 3 front lips (shelf lip + 2 top clips). "Support on build plate only" is enough. The strip-recess floors and the back cable-channel both self-bridge and need no support. |
+| **Supports**       | **On** — the only overhangs are the undersides of the 3 front lips (shelf lip + 2 top clips). "Support on build plate only" is enough. The side rails are vertical walls, the **open cable groove needs no bridging**, and the shallow strip-recess floors self-bridge. |
 | **Walls / infill** | 3 walls, 15–20 % infill. Plenty strong for ~0.5 kg in shear.         |
 | **Layer height**   | 0.2 mm.                                                               |
 
-Approx. part: **246.8 × 198.8 × 15 mm**, ~108 cm³ envelope, **~74 g PLA**, a few hours.
+Approx. part: **250.8 × 197.8 × 15 mm**, ~107 cm³ solid, **~74 g PLA** at ~15–20 % infill, a few hours.
+(Don't forget to enable supports — a missing front lip is what failed the first print.)
 
 ## Files
 
@@ -117,6 +125,8 @@ python3 tools/stl_to_3mf.py stl/fire_hd10_mount.stl 3mf/fire_hd10_mount.3mf
 > (`stl/fire_hd10_mount.stl`) if you'd rather not see it; the geometry is identical.
 
 **Fit too tight or too loose?** Adjust `cl_t` (thickness clearance) and `cl_w` (width clearance).
+**Bottom corners catching?** The side rails start at `rail_y0`; `t_r` is the assumed tablet corner
+radius (rails clear it). Raise `t_r` / `rail_y0` if your corners are rounder than ~12 mm.
 **Different generation or a case?** Change `tw` / `th` / `tt` to the outer dimensions you measure.
 
 ## Tablet reference (2023 / 13th gen)
