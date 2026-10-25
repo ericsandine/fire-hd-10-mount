@@ -62,11 +62,12 @@ USB edge on the left? Mirror the part in your slicer — both short edges are op
 
 ![Back of the base — the open cable channel, in from the right edge and out the bottom-left](images/cable.png)
 
-Cross-section through the channel. Printed **back-down**, the opening sits on the bed (it becomes the
-wall side), so the channel's flat roof is a short **~9 mm bridge** — easy for a P2S, no supports
-needed, and any slight sag is hidden and harmless since the channel is oversized for the cable:
+Cross-section through the channel (cable shown in red). The **wall side is open** — you lay the cable
+in from the back — while the **front (under the tablet) is a solid cover**. Printed back-down, that
+open wall side sits on the bed, so it prints open; the solid cover above it is a short **~9 mm bridge**
+that a P2S handles with no supports:
 
-![Channel cross-section — a simple open channel on the back](images/section.png)
+![Channel cross-section — open on the wall side, solid cover on the front](images/section.png)
 
 ### Inserting / removing
 
