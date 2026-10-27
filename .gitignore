@@ -7,3 +7,5 @@ Thumbs.db
 *.gcode.3mf
 *.3mf.bak
 /build/
+# Bambu Studio CLI output
+result.json
